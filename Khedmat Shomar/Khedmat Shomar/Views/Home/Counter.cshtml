@@ -1,0 +1,69 @@
+﻿@model int
+<!-- Exit Butt Delete Cookie With JS-->
+<div class="card text-center">
+    <div class="card-header">
+        @if (Model <= 0)
+        {
+            <h4 class="text-success">داداش خدمتت که تموم شده!</h4>
+        }
+        else if (Model <= 20)
+        {
+            <h4 class="text-success">دیگه وقتشه نبود بکشی</h4>
+        }
+        else if (Model <= 99)
+        {
+            <h4 class="text-primary">دو رقمی شدی</h4>
+        }
+        else if (Model <= 200)
+        {
+            <h4 class="text-primary">پایه بالا شدی</h4>
+        }
+        else if (Model <= 360)
+        {
+            <h4 class="text-warning">نصف شد</h4>
+        }
+        else if (Model <= 430)
+        {
+            <h4 class="text-warning">صفرت باز شد</h4>
+        }
+        else if (Model <= 550)
+        {
+            <h4 class="text-danger">تا سال بوق خدمت داری</h4>
+        }
+        else if (Model <= 670)
+        {
+            <h4 class="text-danger">اندک ماه</h4>
+        }
+        else
+        {
+            <h4 class="text-danger">کو تا آموزشی تموم شه</h4>
+        }
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">چقدر مونده!</h3>
+        <br />
+        <h5 class="text-info">دقیق @Model.ToString() روز مونده</h5>
+        <br />
+        <div class="form-group row align-content-center">
+            @{
+                int x = Model;
+            }
+            @if (x >= 365)
+            {
+                x -= 365;
+                <label class="">یک سال و </label>
+            }
+            @if (x >= 30)
+            {
+                <label class="">@Convert.ToInt32(x / 30).ToString() ماه و</label>
+            }
+            @if (x % 30 >= 1)
+            {
+                <label class="">@Convert.ToInt32(x % 30).ToString() روز مانده است</label>
+            }
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="#" class="btn btn-outline-info align-self-lg-end" onclick="SendToCal()">محاسبه مجدد</a>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمت شمار - لایت کمپانی</title>
+    <!--SEO Meta Tags-->
+    <meta name="keywords" content="خدمت شمار,چقدر از خدمت مونده,محاسبه تاریخ پایان خدمت" />
+    <meta name="description" content="تو این برگه محاسبه میکنی چقدر دیگه باید خدمت کنی" />
+    <meta name="subject" content="خدمت شمار آنلاین" />
+    <meta name="copyright" content="Light Company" />
+    <meta name="language" content="fa" />
+    <meta name="robots" content="index, follow" />
+    <meta name="summary" content="محاسبه تاریخ پایان خدمت" />
+    <meta name="author" content="LightCompany, Lightcompany.ir" />
+    <meta name="owner" content="LightCompany" />
+    <meta name="category" content="خدمت سربازی" />
+    <meta name="distribution" content="Global" />
+    <!--End SEO Meta Tags-->
+    <!-- Refrences -->
+    <!-- Favicon -->
+    <link rel="icon" src="~/favicon.ico">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>طراحی توسط گروه خوش ذوق <a href="https://lightcompany.ir/" class="text-decoration-none text-primary">لایت کمپانی</a></p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

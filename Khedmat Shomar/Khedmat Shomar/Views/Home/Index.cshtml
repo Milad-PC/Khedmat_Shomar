@@ -1,0 +1,105 @@
+﻿<form action="/Home/ShowFinish" method="post">
+    <div class="card text-center">
+        <div class="card-header">
+            محاسبه کن چقدر دیگه باید خدمت کنی !
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">خدمت شمار آنلاین</h3>
+            <br />
+            <div class="form-group row">
+                <div class="col-3"><label>پایه خدمتی :</label></div>
+                <div class="col-3">
+                    <select class="form-control" name="Roz" id="Roz">
+                        @for (int i = 1; i < 32; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select class="form-control" name="Mah" id="Mah">
+                        <option value="1">فروردین</option>
+                        <option value="2">اردیبهشت</option>
+                        <option value="3">خرداد</option>
+                        <option value="4">تیر</option>
+                        <option value="5">مرداد</option>
+                        <option value="6">شهریور</option>
+                        <option value="7">مهر</option>
+                        <option value="8">آبان</option>
+                        <option value="9">آذر</option>
+                        <option value="10">دی</option>
+                        <option value="11">بهمن</option>
+                        <option value="12">اسفند</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <input class="form-control" type="number" min="1380" max="1500" name="Sal" id="Sal" placeholder="سال" required>
+                </div>
+            </div>
+            <br />
+            <h3 class="card-title text-success">کسری</h3>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>کسری پدر:</label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="number" name="RozKasri" id="RozKasri" placeholder="روز">
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="number" name="MahKasri" id="MahKasri" placeholder="ماه">
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>کسری بسیج:</label>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="number" name="RozBasij" id="RozBasij" placeholder="روز">
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="number" name="MahBasij" id="MahBasij" placeholder="ماه">
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-4">
+                    <label>کسری متاهلی:</label>
+                </div>
+                <div class="col-4">
+                    <select class="form-control" name="Mojarad" id="Mojarad">
+                        <option value="0">مجرد</option>
+                        <option value="2">متاهل</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <input class="form-control" type="number" name="Bache" id="Bache" placeholder="تعداد فرزند">
+                </div>
+            </div>
+            <br />
+            <h3 class="card-title text-danger">اضاف</h3>
+            <br />
+            <div class="form-group row">
+                <div class="col-6">
+                    <label>غیبت:</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="number" name="RozFarar" id="RozFarar" placeholder="روز">
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-6">
+                    <label>متفرقه:</label>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="number" name="RozEzaf" id="RozEzaf" placeholder="روز">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <input type="submit" value="محاسبه" class="btn btn-outline-warning align-self-lg-end" />
+        </div>
+    </div>
+</form>
