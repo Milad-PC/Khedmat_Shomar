@@ -67,3 +67,12 @@
         <a href="#" class="btn btn-outline-info align-self-lg-end" onclick="SendToCal()">محاسبه مجدد</a>
     </div>
 </div>
+@section scripts{
+    <script>
+        function SendToCal() {
+            alert('tst');
+            document.cookie = "KhedmatShomar=; path=/;";
+            window.location.replace('https://localhost:44357/Home/Index');
+        }
+    </script>
+}
