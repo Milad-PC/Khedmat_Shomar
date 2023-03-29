@@ -14,14 +14,17 @@ namespace Khedmat_Shomar.Controllers
             DateTime finishDate = DateTime.Now.AddYears(2);
             //if have cookie send to counter
             HttpCookie cookie = Request.Cookies["KhedmatShomar"];
-            if (cookie != null || cookie.Value == string.Empty)
+            if (cookie != null)
             {
-                try
+                if (cookie.Value != string.Empty)
                 {
-                    finishDate = Convert.ToDateTime(cookie.Value);
+                    try
+                    {
+                        finishDate = Convert.ToDateTime(cookie.Value);
+                    }
+                    catch { }
+                    return RedirectToAction("Counter", new { FinishDate = finishDate });
                 }
-                catch { }
-                return RedirectToAction("Counter", new { FinishDate = finishDate });
             }
 
             return View();
