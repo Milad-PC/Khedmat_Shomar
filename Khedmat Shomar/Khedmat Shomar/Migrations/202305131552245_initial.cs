@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -15,6 +15,7 @@
                         IP = c.String(),
                         Browser = c.String(),
                         OS = c.String(),
+                        VisitDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             

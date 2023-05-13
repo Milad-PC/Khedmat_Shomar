@@ -123,13 +123,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305131454331_Initial.cs" />
-    <Compile Include="Migrations\202305131454331_Initial.designer.cs">
-      <DependentUpon>202305131454331_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202305131519001_AddDate.cs" />
-    <Compile Include="Migrations\202305131519001_AddDate.designer.cs">
-      <DependentUpon>202305131519001_AddDate.cs</DependentUpon>
+    <Compile Include="Migrations\202305131552245_initial.cs" />
+    <Compile Include="Migrations\202305131552245_initial.designer.cs">
+      <DependentUpon>202305131552245_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Soldier.cs" />
@@ -223,11 +219,8 @@
     <Content Include="Scripts\jquery-3.6.4.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202305131454331_Initial.resx">
-      <DependentUpon>202305131454331_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305131519001_AddDate.resx">
-      <DependentUpon>202305131519001_AddDate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305131552245_initial.resx">
+      <DependentUpon>202305131552245_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
