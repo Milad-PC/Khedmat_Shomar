@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Khedmat_Shomar.Visit>
+
+@{
+    ViewBag.Title = "ShowVisits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ShowVisits</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Browser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VisitDate)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Browser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OS)
+        </td>
+        <td>
+            @item.VisitDate.ToShamsi();
+        </td>
+    </tr>
+}
+
+</table>
