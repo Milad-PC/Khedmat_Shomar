@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
-using Khedmat_Shomar.DateBase;
 
 namespace Khedmat_Shomar.Controllers
 {
@@ -42,19 +41,6 @@ namespace Khedmat_Shomar.Controllers
             }
 
             int Day = (FinishDate - DateTime.Now).Days;
-
-            // Insert Visit
-            Visit src = new Visit();
-            src.IP = (Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"]).Split(',')[0].Trim();
-            src.Browser = Request.Browser.Browser;
-            src.OS = Request.UserAgent;
-            src.VisitDate = DateTime.Now;
-            MyContext db = new MyContext();
-            db.Visits.Add(src);
-            db.SaveChanges();
-
-            ViewBag.Visit = db.Visits.Count().ToString("n0");
-            // End Insert Visit
 
 
             return View(Day);
@@ -142,14 +128,6 @@ namespace Khedmat_Shomar.Controllers
             }
             
             return RedirectToAction("Counter", new { FinishDate = dt });
-        }
-
-        public ActionResult ShowVisits()
-        {
-            MyContext db = new MyContext();
-
-            IEnumerable<Visit> visits = db.Visits.OrderByDescending(u=>u.VisitDate);
-            return View(visits);
         }
     }
 }
