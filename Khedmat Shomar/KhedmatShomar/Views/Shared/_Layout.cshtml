@@ -1,49 +1,89 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KhedmatShomar</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <meta name="theme-color" content="#141710" />
+    <meta name="description" content="خدمت‌شمار — شمارش معکوس پایان خدمت سربازی" />
+    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " — " : "")خدمت‌شمار</title>
+    <link rel="manifest" href="~/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="~/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="~/icons/icon-192.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        // جلوگیری از فلش تم اشتباه قبل از رندر
+        (function () {
+            try {
+                var t = localStorage.getItem('ks_theme');
+                if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+            } catch (e) { }
+        })();
+    </script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/KhedmatShomar.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KhedmatShomar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+    <div class="page">
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5 L12 12.5 L19 7.5"></path><path d="M5 13.5 L12 18.5 L19 13.5"></path></svg>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-title">خدمت‌شمار</div>
+                    <div class="brand-sub">شمارش معکوس پایان خدمت</div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+            <button type="button" id="themeToggle" class="theme-toggle">
+                <span class="theme-dot"></span>
+                <span id="themeLabel">روشن</span>
+            </button>
+        </header>
+
+        <main class="main-col">
             @RenderBody()
         </main>
+
+        <div class="ad-wrap">
+            <div class="ad-slot" id="adSlot">
+                <div class="ad-tag">AD SLOT — 320×100 / 728×90</div>
+                <div class="ad-caption">جای بنر تبلیغاتی</div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <button type="button" id="openInstallModal" class="footer-link">راهنمای نصب اپلیکیشن</button>
+            <span class="footer-credit">طراحی توسط لایت کمپانی</span>
+        </footer>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - KhedmatShomar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <div id="installModal" class="modal-overlay" hidden>
+        <div class="modal-card" dir="rtl" role="dialog" aria-modal="true" aria-labelledby="installTitle">
+            <div class="modal-head">
+                <div class="modal-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 L12 15"></path><path d="M7 11 L12 16 L17 11"></path><path d="M5 20 L19 20"></path></svg>
+                </div>
+                <div id="installTitle" class="modal-title">خدمت‌شمار رو نصب کن!</div>
+            </div>
+            <div class="modal-desc">اپ رو به صفحه اصلی گوشیت اضافه کن تا هر روز بدون باز کردن مرورگر ببینی چقدر مونده.</div>
+
+            <div class="modal-guides">
+                <div class="guide-card">
+                    <div class="guide-title">اندروید (کروم)</div>
+                    <div class="guide-body">منوی ⋮ بالای مرورگر را بزن، بعد «افزودن به صفحه اصلی» (Add to Home screen) و در آخر «نصب» را تایید کن.</div>
+                </div>
+                <div class="guide-card">
+                    <div class="guide-title">آیفون (سافاری)</div>
+                    <div class="guide-body">دکمه Share (مربع با فلش رو به بالا) را بزن، بعد «Add to Home Screen» و در آخر «Add».</div>
+                </div>
+            </div>
+
+            <button type="button" id="installAction" class="btn-primary modal-btn" hidden>نصب اپلیکیشن</button>
+            <button type="button" id="closeInstallModal" class="btn-primary modal-btn">متوجه شدم</button>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,0 +1,53 @@
+@using KhedmatShomar.Services
+@model CounterViewModel
+@{
+    ViewData["Title"] = "شمارنده";
+    const double circumference = 552.9; // 2πr برای r=88
+    var dash = (Model.PercentDone / 100.0 * circumference).ToString("0.0", System.Globalization.CultureInfo.InvariantCulture);
+}
+
+<div class="card counter-card"
+     id="counterCard"
+     data-finish="@Model.Finish.ToString("O")"
+     data-start="@Model.Start.ToString("O")">
+
+    <div class="msg-pill" id="msgPill" style="color:var(--@Model.MessageColor)">@Model.Message</div>
+
+    <div class="ring-wrap">
+        <svg viewBox="0 0 200 200" width="250" height="250" class="ring-svg">
+            <circle cx="100" cy="100" r="88" fill="none" stroke="var(--track)" stroke-width="9"></circle>
+            <circle id="ringProgress" cx="100" cy="100" r="88" fill="none" stroke="var(--accent)" stroke-width="9"
+                    stroke-linecap="round" stroke-dasharray="@dash 552.9"></circle>
+        </svg>
+        <div class="ring-center">
+            <div class="ring-days" id="remainDays">@Model.RemainDays.ToPersianDigits()</div>
+            <div class="ring-caption">روز مانده</div>
+        </div>
+    </div>
+
+    <div class="pct-line" id="pctLine">٪@(Model.PercentDone.ToPersianDigits()) از خدمت طی شده</div>
+
+    <div class="breakdown">
+        <div class="breakdown-cell">
+            <div class="breakdown-num" id="bdYears">@Model.Years.ToPersianDigits()</div>
+            <div class="breakdown-label">سال</div>
+        </div>
+        <div class="breakdown-cell">
+            <div class="breakdown-num" id="bdMonths">@Model.Months.ToPersianDigits()</div>
+            <div class="breakdown-label">ماه</div>
+        </div>
+        <div class="breakdown-cell">
+            <div class="breakdown-num" id="bdDays">@Model.Days.ToPersianDigits()</div>
+            <div class="breakdown-label">روز</div>
+        </div>
+    </div>
+
+    <div class="discharge-row">
+        <span class="discharge-label">تاریخ ترخیص</span>
+        <span class="discharge-date">@Model.DischargeShamsi</span>
+    </div>
+
+    <form asp-action="Recalc" method="post" class="recalc-form">
+        <button type="submit" class="btn-ghost">محاسبه مجدد</button>
+    </form>
+</div>

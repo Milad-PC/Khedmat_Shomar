@@ -1,8 +1,90 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@using KhedmatShomar.Services
+@model Soldier
+@{
+    ViewData["Title"] = "محاسبه پایان خدمت";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form asp-action="ShowFinish" method="post" class="card form-card">
+    <div class="form-title">محاسبه کن چقدر دیگه باید خدمت کنی!</div>
+    <div class="form-sub">تاریخ اعزام و کسری‌هات رو وارد کن؛ بقیه‌اش با ما.</div>
+
+    <div asp-validation-summary="All" class="validation-summary"></div>
+
+    <div class="section-head">
+        <span class="section-label accent">تاریخ اعزام (پایه خدمتی)</span>
+        <span class="section-line"></span>
+    </div>
+    <div class="grid-date">
+        <div class="field">
+            <label asp-for="Roz">روز</label>
+            <select asp-for="Roz">
+                @for (var d = 1; d <= 31; d++)
+                {
+                    <option value="@d">@d.ToPersianDigits()</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <label asp-for="Mah">ماه</label>
+            <select asp-for="Mah">
+                @for (var m = 1; m <= 12; m++)
+                {
+                    <option value="@m">@PersianDate.MonthNames[m - 1]</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <label asp-for="Sal">سال</label>
+            <input asp-for="Sal" type="number" min="1380" max="1500" required placeholder="۱۴۰۳" />
+        </div>
+    </div>
+
+    <div class="section-head">
+        <span class="section-label accent">کسری‌ها</span>
+        <span class="section-line"></span>
+    </div>
+    <div class="fields-col">
+        <div class="field">
+            <label>کسری پدر (سابقه جبهه)</label>
+            <div class="grid-2">
+                <input asp-for="RozKasri" type="number" min="0" placeholder="روز" />
+                <input asp-for="MahKasri" type="number" min="0" placeholder="ماه" />
+            </div>
+        </div>
+        <div class="field">
+            <label>کسری بسیج</label>
+            <div class="grid-2">
+                <input asp-for="RozBasij" type="number" min="0" placeholder="روز" />
+                <input asp-for="MahBasij" type="number" min="0" placeholder="ماه" />
+            </div>
+        </div>
+        <div class="field">
+            <label>تاهل و فرزند</label>
+            <div class="grid-2">
+                <select asp-for="Taahol">
+                    <option value="0">مجرد</option>
+                    <option value="2">متاهل</option>
+                </select>
+                <input asp-for="Bache" type="number" min="0" placeholder="تعداد فرزند" />
+            </div>
+        </div>
+    </div>
+
+    <div class="section-head">
+        <span class="section-label far">اضافه‌خدمت</span>
+        <span class="section-line"></span>
+    </div>
+    <div class="grid-2">
+        <div class="field">
+            <label asp-for="RozFarar">غیبت</label>
+            <input asp-for="RozFarar" type="number" min="0" placeholder="روز" />
+        </div>
+        <div class="field">
+            <label asp-for="RozEzaf">متفرقه</label>
+            <input asp-for="RozEzaf" type="number" min="0" placeholder="روز" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn-primary submit-btn">محاسبه کن</button>
+    <div class="form-hint">اطلاعات فقط یک‌بار پرسیده می‌شه و روی همین دستگاه ذخیره می‌مونه.</div>
+</form>

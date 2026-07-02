@@ -1,31 +1,385 @@
-html {
+/* خدمت‌شمار — تم تیره (پیش‌فرض) و روشن، مطابق طرح Claude Design */
+
+:root {
+  --bg: #141710;
+  --card: #1b2015;
+  --card2: #12150d;
+  --border: #313a22;
+  --ink: #e9e7d9;
+  --muted: #9aa084;
+  --accent: #a8ba6a;
+  --accent-ink: #161a0f;
+  --khaki: #d8c688;
+  --track: #2b331d;
+  --good: #a8ba6a;
+  --mid: #d8c688;
+  --warn: #dda45f;
+  --far: #d1795a;
+  --overlay: rgba(8, 10, 5, .72);
+}
+
+:root[data-theme="light"] {
+  --bg: #eceadd;
+  --card: #f8f7ee;
+  --card2: #fdfcf4;
+  --border: #d4d2b8;
+  --ink: #272c1c;
+  --muted: #6f7459;
+  --accent: #5c6f2d;
+  --accent-ink: #f6f5e8;
+  --khaki: #8a7a3d;
+  --track: #dcdac2;
+  --good: #5c6f2d;
+  --mid: #8a7a3d;
+  --warn: #a9702c;
+  --far: #b05637;
+  --overlay: rgba(40, 44, 28, .5);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 28px;
+}
+
+/* ---------- هدر ---------- */
+.app-header {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 16px;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-text { display: flex; flex-direction: column; gap: 1px; }
+.brand-title { font-size: 18px; font-weight: 900; line-height: 1.2; }
+.brand-sub { font-size: 11.5px; color: var(--muted); }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 99px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.theme-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--khaki);
+  display: inline-block;
+}
+
+/* ---------- ستون اصلی و کارت ---------- */
+.main-col { width: 100%; max-width: 460px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+/* ---------- فرم ---------- */
+.form-title { font-size: 15.5px; font-weight: 800; margin: 0 0 4px; }
+.form-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 22px; }
+
+.validation-summary { color: var(--far); font-size: 12.5px; }
+.validation-summary ul { margin: 0 0 14px; padding-inline-start: 18px; display: flex; flex-direction: column; gap: 4px; }
+.validation-summary.validation-summary-valid { display: none; }
+.input-validation-error { border-color: var(--far) !important; }
+
+.section-head { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; }
+.section-head:not(:first-of-type) { margin-top: 24px; }
+.section-label { font-size: 13px; font-weight: 700; }
+.section-label.accent { color: var(--accent); }
+.section-label.far { color: var(--far); }
+.section-line { flex: 1; height: 1px; background: var(--border); }
+
+.grid-date { display: grid; grid-template-columns: 1fr 1.4fr 1.2fr; gap: 10px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fields-col { display: flex; flex-direction: column; gap: 14px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11.5px; color: var(--muted); }
+
+input, select {
+  width: 100%;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 12px 10px;
+  font-family: inherit;
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+input::placeholder { color: var(--muted); opacity: .7; }
+
+/* حذف فلش‌های عدد در وب‌کیت برای ظاهر تمیزتر */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.submit-btn { margin-top: 26px; }
+
+.form-hint {
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
 }
 
-body {
-  margin-bottom: 60px;
+/* ---------- شمارنده ---------- */
+.counter-card {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+.msg-pill {
+  border: 1px solid var(--border);
+  background: var(--card2);
+  border-radius: 99px;
+  padding: 8px 18px;
+  font-size: 14.5px;
+  font-weight: 800;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.ring-wrap { position: relative; width: 250px; height: 250px; }
+.ring-svg { transform: rotate(-90deg); display: block; }
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
+
+.ring-days { font-size: 66px; font-weight: 900; line-height: 1; color: var(--khaki); }
+.ring-caption { font-size: 15px; color: var(--muted); font-weight: 500; }
+
+.pct-line { font-size: 12.5px; color: var(--muted); margin-top: -8px; }
+
+.breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.breakdown-cell {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.breakdown-num { font-size: 26px; font-weight: 900; line-height: 1; color: var(--ink); }
+.breakdown-label { font-size: 12px; color: var(--muted); }
+
+.discharge-row {
+  width: 100%;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.discharge-label { font-size: 13px; color: var(--muted); }
+.discharge-date { font-size: 16px; font-weight: 800; color: var(--khaki); }
+
+.recalc-form { width: 100%; }
+
+.btn-ghost {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 12px;
+  padding: 13px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- بنر تبلیغاتی ---------- */
+.ad-wrap { width: 100%; max-width: 460px; margin-top: 18px; }
+
+.ad-slot {
+  height: 96px;
+  border-radius: 14px;
+  border: 1px dashed var(--border);
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(154, 160, 132, .07) 10px, rgba(154, 160, 132, .07) 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.ad-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.ad-caption { font-size: 12px; color: var(--muted); }
+
+/* ---------- فوتر ---------- */
+.app-footer {
+  width: 100%;
+  max-width: 460px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-link {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+}
+
+.footer-credit { font-size: 12px; color: var(--muted); }
+
+/* ---------- مودال نصب ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal-overlay[hidden] { display: none; }
+
+.modal-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  color: var(--ink);
+}
+
+.modal-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+
+.modal-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-title { font-size: 16.5px; font-weight: 900; }
+
+.modal-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
+
+.modal-guides { display: flex; flex-direction: column; gap: 14px; }
+
+.guide-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.guide-title { font-size: 13px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+.guide-body { font-size: 12.5px; line-height: 2.1; color: var(--ink); }
+
+.modal-btn { margin-top: 20px; padding: 13px; font-size: 14.5px; }
+.modal-btn + .modal-btn { margin-top: 10px; }
+
+/* ---------- خطا ---------- */
+.error-card { text-align: center; }
+.error-card h1 { font-size: 20px; margin: 0 0 8px; }
+.error-card p { font-size: 13px; color: var(--muted); }

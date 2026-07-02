@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# SQLite runtime database (visit logs)
+khedmatshomar.db-*
+
+# Design handoff artifacts
+design-handoff/
+*-handoff.zip
