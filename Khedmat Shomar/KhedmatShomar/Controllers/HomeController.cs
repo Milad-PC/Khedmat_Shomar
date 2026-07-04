@@ -72,11 +72,11 @@ public class HomeController(ServiceCalculator calculator) : Controller
 
     private static (string Text, string Color) MessageFor(int d) => d switch
     {
-        <= 0 => ("داداش خدمتت که تموم شده!", "good"),
+        <= 0 => ("داداش ول کن ، خدمتت تموم شده!", "good"),
         <= 20 => ("دیگه وقتشه نبود بکشی", "good"),
         <= 99 => ("دو رقمی شدی", "good"),
         <= 200 => ("پایه بالا شدی", "mid"),
-        <= 360 => ("نصف شد", "mid"),
+        <= 360 => ("کمر خدمت شکست", "mid"),
         <= 430 => ("صفرت باز شد", "warn"),
         <= 550 => ("تا سال بوق خدمت داری", "warn"),
         <= 670 => ("اندک ماه", "far"),
