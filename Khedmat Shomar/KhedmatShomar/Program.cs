@@ -26,6 +26,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseMiddleware<VisitLoggingMiddleware>();
@@ -33,7 +34,6 @@ app.UseMiddleware<VisitLoggingMiddleware>();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
