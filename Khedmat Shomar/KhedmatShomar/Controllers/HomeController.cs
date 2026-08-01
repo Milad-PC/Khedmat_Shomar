@@ -70,6 +70,13 @@ public class HomeController(ServiceCalculator calculator) : Controller
     public IActionResult Error()
         => View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
+    /// <summary>
+    /// صفحه خطای وضعیت (عمدتاً ۴۰۴). با UseStatusCodePagesWithReExecute فراخوانی می‌شود،
+    /// بنابراین Status Code اصلی پاسخ حفظ می‌شود و ۲۰۰ برنمی‌گردد.
+    /// </summary>
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Status(int code = 404) => View("NotFound", code);
+
     private static (string Text, string Color) MessageFor(int d) => d switch
     {
         <= 0 => ("داداش ول کن ، خدمتت تموم شده!", "good"),

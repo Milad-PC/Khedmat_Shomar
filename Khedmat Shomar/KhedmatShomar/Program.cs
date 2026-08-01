@@ -1,3 +1,5 @@
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using KhedmatShomar.Data;
 using KhedmatShomar.Middleware;
 using KhedmatShomar.Services;
@@ -6,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+// بدون این تنظیم، متن فارسی داخل attributeها (title، description، og و...) به شکل &#x62E; رمزگذاری می‌شود
+builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
 builder.Services.AddSingleton<ServiceCalculator>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Default")
@@ -24,6 +29,9 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+// صفحه ۴۰۴ سفارشی که Status Code واقعی را حفظ می‌کند (نه ۲۰۰)
+app.UseStatusCodePagesWithReExecute("/Home/Status", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

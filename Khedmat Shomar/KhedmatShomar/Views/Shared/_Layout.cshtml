@@ -1,11 +1,13 @@
+@{
+    var seo = ViewData.GetSeo();
+}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#141710" />
-    <meta name="description" content="خدمت‌شمار — شمارش معکوس پایان خدمت سربازی" />
-    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " — " : "")خدمت‌شمار</title>
+    <title>@seo.FinalTitle</title>
     <link rel="manifest" href="~/manifest.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="~/icons/icon.svg" />
     <link rel="apple-touch-icon" href="~/icons/icon-192.png" />
@@ -13,37 +15,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <!-- SEO -->
+    <meta name="description" content="@seo.FinalDescription" />
+    <meta name="robots" content="@seo.Robots" />
+    @if (seo.CanonicalUrl is not null)
+    {
+        <link rel="canonical" href="@seo.CanonicalUrl" />
+        <meta property="og:url" content="@seo.CanonicalUrl" />
+    }
     <meta name="google-site-verification" content="T7yz-gvijNCqME7vGJeNF1oQekb7sA1Keq10rLibR6c" />
-    <meta name="description" content="خدمت شمار رایگان با قابلیت نصب روی گوشی" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://khedmatshomar.ir/" />
-    <meta property="og:title" content="خدمت شمار رایگان">
-    <meta property="og:description" content="خدمت شمار رایگان با قابلیت نصب روی گوشی">
-    <meta name="twitter:image" content="~/icon/icon-192.png">
-    <meta property="og:image" content="~/icon/icon-512.png">
-    <meta property="og:url" content="https://khedmatshomar.ir/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="khedmatshomar">
+    <meta property="og:type" content="@seo.OgType" />
+    <meta property="og:site_name" content="@SeoMetadata.SiteName" />
     <meta property="og:locale" content="fa_IR" />
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@ViewData["Title"]">
-    <meta name="twitter:description" content="خدمت شمار رایگان با قابلیت نصب روی گوشی">
-    <meta name="copyright" content="Light Company">
-    <script type="application/ld+json">
-        {
-          "@@context": "https://schema.org",
-          "@@type": "WebApplication",
-          "name": "خدمت شمار",
-          "url": "https://khedmatshomar.ir/",
-          "description": "خدمت شمار رایگان با قابلیت نصب روی گوشی",
-          "applicationCategory": "LifestyleApplication",
-          "operatingSystem": "Any",
-          "offers": {
-            "@@type": "Offer",
-            "price": "0"
-          }
-        }
-    </script>
+    <meta property="og:title" content="@seo.FinalOgTitle" />
+    <meta property="og:description" content="@seo.FinalOgDescription" />
+    <meta property="og:image" content="@seo.ImageUrl" />
+    <meta property="og:image:alt" content="@seo.ImageAlt" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="@seo.FinalOgTitle" />
+    <meta name="twitter:description" content="@seo.FinalOgDescription" />
+    <meta name="twitter:image" content="@seo.ImageUrl" />
+    <meta name="twitter:image:alt" content="@seo.ImageAlt" />
+    <meta name="copyright" content="Light Company" />
+    @* به‌صورت Raw نوشته می‌شود چون Tag Helper اسکریپت، «+» را در type به &#x2B; تبدیل می‌کند *@
+    @if (seo.JsonLd is not null)
+    {
+        @Html.Raw($"<script type=\"application/ld+json\">{seo.JsonLd}</script>")
+    }
     <!-- End SEO -->
     <script>
         // جلوگیری از فلش تم اشتباه قبل از رندر
@@ -80,7 +77,7 @@
 
         <div class="ad-wrap">
             <div class="ad-slot" id="adSlot" style="position:relative;overflow:hidden">
-                 <img src="~/ads/ChatGPT Image Jul 4, 2026, 11_57_08 AM.png" style="position:absolute;max-width:100%" />
+                 <img src="~/ads/ChatGPT Image Jul 4, 2026, 11_57_08 AM.png" alt="" loading="lazy" decoding="async" style="position:absolute;max-width:100%" />
             </div>
         </div>
 

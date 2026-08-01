@@ -1,0 +1,21 @@
+@model int
+@{
+    var isNotFound = Model == 404;
+    ViewData.SetSeo(new SeoMetadata
+    {
+        Heading = isNotFound ? "صفحه پیدا نشد" : "خطا",
+        Path = null,
+        Index = false,
+        Follow = false
+    });
+}
+
+<div class="card error-card">
+    <h1>@(isNotFound ? "این صفحه پیدا نشد!" : $"خطای {Model.ToPersianDigits()}")</h1>
+    <p>
+        @(isNotFound
+            ? "آدرسی که وارد کردی وجود نداره یا جابه‌جا شده."
+            : "درخواستت انجام نشد. دوباره تلاش کن.")
+    </p>
+    <a href="/" class="btn-primary" style="display:inline-block;width:auto;padding:12px 28px;text-decoration:none;margin-top:8px">بازگشت به خانه</a>
+</div>

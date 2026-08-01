@@ -1,11 +1,14 @@
-@using KhedmatShomar.Services
 @model Soldier
 @{
-    ViewData["Title"] = "محاسبه پایان خدمت";
+    ViewData.SetSeo(new SeoMetadata
+    {
+        Path = "/",
+        JsonLd = Seo.HomeJsonLd
+    });
 }
 
 <form asp-action="ShowFinish" method="post" class="card form-card">
-    <div class="form-title">محاسبه کن چقدر دیگه باید خدمت کنی!</div>
+    <h1 class="form-title">محاسبه کن چقدر دیگه باید خدمت کنی!</h1>
     <div class="form-sub">تاریخ اعزام و کسری‌هات رو وارد کن؛ بقیه‌اش با ما.</div>
 
     <div asp-validation-summary="All" class="validation-summary"></div>

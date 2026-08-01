@@ -1,7 +1,12 @@
-@using KhedmatShomar.Services
 @model CounterViewModel
 @{
-    ViewData["Title"] = "شمارنده";
+    // صفحه شخصی‌سازی‌شده و وابسته به کوکی کاربر — محتوای یکتای قابل ایندکس ندارد
+    ViewData.SetSeo(new SeoMetadata
+    {
+        Heading = "شمارش معکوس خدمت",
+        Path = "/Home/Counter",
+        Index = false
+    });
     const double circumference = 552.9; // 2πr برای r=88
     var dash = (Model.PercentDone / 100.0 * circumference).ToString("0.0", System.Globalization.CultureInfo.InvariantCulture);
 }

@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using KhedmatShomar.Data;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace KhedmatShomar.Middleware;
 
@@ -38,6 +39,9 @@ public class VisitLoggingMiddleware(RequestDelegate next, ILogger<VisitLoggingMi
     private static bool ShouldLog(HttpContext context)
     {
         if (!HttpMethods.IsGet(context.Request.Method))
+            return false;
+        // اجرای دوباره برای صفحه خطا/۴۰۴ همان بازدید است و نباید دوبار شمرده شود
+        if (context.Features.Get<IStatusCodeReExecuteFeature>() is not null)
             return false;
         var path = context.Request.Path.Value ?? "/";
         // فقط صفحات؛ فایل‌های استاتیک (پسونددار) و service worker شمرده نمی‌شوند

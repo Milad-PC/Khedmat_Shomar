@@ -1,6 +1,12 @@
 @model ErrorViewModel
 @{
-    ViewData["Title"] = "خطا";
+    ViewData.SetSeo(new SeoMetadata
+    {
+        Heading = "خطا",
+        Path = "/Home/Error",
+        Index = false,
+        Follow = false
+    });
 }
 
 <div class="card error-card">
