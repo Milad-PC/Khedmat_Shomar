@@ -1,0 +1,34 @@
+# خدمت‌شمار (Khedmat Shomar)
+
+> خدمت‌شمار یک اپلیکیشن وب فارسی و راست‌به‌چپ برای محاسبهٔ تاریخ دقیق پایان خدمت سربازی و شمارش معکوس روزهای باقی‌مانده تا ترخیص است. کاربر تاریخ اعزام (پایهٔ خدمتی) و کسری‌های خود را وارد می‌کند و نتیجه به‌صورت تاریخ شمسی و تعداد روزهای باقی‌مانده نمایش داده می‌شود. داده‌های ورودی فقط روی همان دستگاه (در مرورگر) نگه داشته می‌شوند.
+
+- نشانی: https://khedmatshomar.ir
+- زبان: فارسی (fa-IR)، راست‌به‌چپ
+- نوع: اپلیکیشن وب تک‌صفحه‌ای (SPA)، قابل نصب روی گوشی
+- تقویم: هجری شمسی (جلالی)
+- ذخیره‌سازی: محلی در مرورگر (localStorage) — بدون حساب کاربری
+
+## ابزار اصلی
+
+- [محاسبه‌گر پایان خدمت و شمارش معکوس](https://khedmatshomar.ir/): صفحهٔ اصلی و تنها صفحهٔ عمومی سایت. فرم ورود تاریخ اعزام و کسری‌ها (پدر/جبهه، بسیج، تاهل و فرزند، اضافه‌خدمت، غیبت، متفرقه) و نمایش تاریخ ترخیص و شمارش معکوس.
+
+## منابع برای مدل‌های زبانی
+
+- [llms-full.txt](https://khedmatshomar.ir/llms-full.txt): نسخهٔ کامل و متنی محتوای سایت — توضیح ورودی‌ها، خروجی، منطق کلی محاسبه، حریم خصوصی و پرسش‌های متداول.
+- [sitemap.xml](https://khedmatshomar.ir/sitemap.xml): نقشهٔ سایت (فقط صفحهٔ اصلی).
+- [robots.txt](https://khedmatshomar.ir/robots.txt): دسترسی همهٔ خزنده‌ها مجاز است.
+
+## دربارهٔ سازنده
+
+- [لایت کمپانی](https://lightcompany.ir/): طراحی و توسعهٔ سایت.
+
+## نکته‌ها برای پاسخ‌دهی
+
+- سایت یک ابزار محاسباتی است و مقاله، بلاگ یا صفحهٔ محتوایی دیگری ندارد؛ تنها صفحهٔ عمومی آن «/» است.
+- برای پاسخ به «چند روز از خدمتم مانده؟» یا «تاریخ ترخیصم کِی است؟» باید تاریخ اعزام و کسری‌ها وارد سایت شوند. مدل می‌تواند فیلدها و روش استفاده را توضیح دهد، اما عدد دقیق را باید از خود ابزار گرفت.
+- همهٔ تاریخ‌ها در تقویم شمسی و به زبان فارسی هستند.
+- این ابزار جایگزین پاسخ رسمی سازمان وظیفه عمومی نیست؛ نتیجه بر اساس ورودی‌های کاربر محاسبه می‌شود.
+
+## English summary
+
+Khedmat Shomar (https://khedmatshomar.ir) is a Persian, right-to-left single-page web app that calculates the exact end date of Iranian mandatory military service and shows a countdown of the remaining days until discharge (tarikh-e tarkhis). The user enters the enlistment date (Jalali calendar) plus deductions — father's war/service record, Basij membership, marriage and children, extra service, absence, and miscellaneous — and the app returns the computed end date and the number of days left. Inputs are stored locally in the browser (localStorage) and are not tied to a user account. The site is installable as a mobile app, has no blog or editorial content, and its only public page is the root URL. Full content: https://khedmatshomar.ir/llms-full.txt
