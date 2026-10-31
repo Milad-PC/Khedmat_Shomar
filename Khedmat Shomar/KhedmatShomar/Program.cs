@@ -3,6 +3,7 @@ using System.Text.Unicode;
 using KhedmatShomar.Data;
 using KhedmatShomar.Middleware;
 using KhedmatShomar.Services;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +35,11 @@ if (!app.Environment.IsDevelopment())
 app.UseStatusCodePagesWithReExecute("/Home/Status", "?code={0}");
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+
+// بدون charset=utf-8 مرورگر متن فارسی فایل‌های .txt (مثل llms.txt) را ناخوانا نشان می‌دهد
+var contentTypes = new FileExtensionContentTypeProvider();
+contentTypes.Mappings[".txt"] = "text/plain; charset=utf-8";
+app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = contentTypes });
 app.UseRouting();
 
 app.UseMiddleware<VisitLoggingMiddleware>();
